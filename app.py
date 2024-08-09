@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify
 from flask_mail import Mail, Message
 from flask_cors import CORS
@@ -14,7 +15,9 @@ HOLIDAY_API_URL = "https://holidayapi.com/v1/holidays"
 API_KEY = "fc14d6ff-335d-4f7c-ac04-633d3619be06"
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///event.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("Database_url")
+#postgresql://skasalawat:VT82DwLu0HgNvfqTV5oa163VJS7bv4jl@dpg-cqr2o1ggph6c738h1evg-a.oregon-postgres.render.com/eventdb_dclw
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
